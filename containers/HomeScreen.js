@@ -40,7 +40,7 @@ export default function HomeScreen() {
       // States managed in this page :
       // 1 handle user'sposition
       const [location, setLocation] = useState(null);
-      const [errorMessage, setErrorMessage] = useState(null);
+
       // 2 monitor if the the drawer is open or closed
       const [drawerOpen, setDrawerOpen] = useState(false);
       // 3 - Monitor if the data is loaded or note --> Prevents from crash at the loading
@@ -52,17 +52,28 @@ export default function HomeScreen() {
       // 6 - State for radius
       const [radiusCalculated, setRadiusCalculated] = useState(20000);
 
+      // console.log(producers);
+
       // Ask permission to the client
 
-      const askPermission = useCallback(async () => {
-            alert("here we are");
-            // const obj = await Permissions.askAsync(Permissions.LOCATION);
+      const askPermission = async () => {
             const { status } = await Permissions.askAsync(Permissions.LOCATION);
-            if (status !== "granted") {
-                  setErrorMessage("Permission refusée");
-                  alert(errorMessage);
-                  // ne faudrait-il pas faire un setLocation ici aussi au cas où le user refuse sa geoloc??, sans quoi location n'est pas défini
-                  // ajout HL
+            if (status === "granted") {
+                  // Permission allowed, get user's position
+                  const userLocation = await Location.getCurrentPositionAsync(
+                        {}
+                  );
+                  // Set up user's position and map's region
+                  setLocation(userLocation);
+                  console.log(userLocation);
+                  setIsRegion({
+                        latitude: userLocation.coords.latitude,
+                        longitude: userLocation.coords.longitude,
+                        latitudeDelta: 0.4,
+                        longitudeDelta: 0.4
+                  });
+                  setIsLoading(false);
+            } else {
                   setLocation({
                         latitude: 48.866667,
                         longitude: 2.333333,
@@ -77,27 +88,8 @@ export default function HomeScreen() {
                         longitudeDelta: 0.4
                   });
                   setIsLoading(false);
-            } else {
-                  // if (obj.status === "granted") {
-                  // Permission allowed, get user's position
-                  const userLocation = await Location.getCurrentPositionAsync(
-                        {}
-                  );
-
-                  // Set up user's position and map's region
-                  setLocation(userLocation);
-                  console.log(userLocation);
-
-                  setIsRegion({
-                        latitude: userLocation.coords.latitude,
-                        longitude: userLocation.coords.longitude,
-                        latitudeDelta: 0.4,
-                        longitudeDelta: 0.4
-                  });
-
-                  setIsLoading(false);
             }
-      });
+      };
 
       const refreshData = async (
             region,
@@ -116,6 +108,8 @@ export default function HomeScreen() {
                                     user_Long: location.coords.longitude
                               }
                         );
+                        console.log(response.data);
+
                         setProducers(response.data);
                         console.log(response.data.length);
                   } catch (error) {
@@ -149,10 +143,10 @@ export default function HomeScreen() {
       }, []);
 
       // Refresh producers data when map's region is modified
-      // useEffect(() => {
-      //       radiusCalculatedWithDelta(region);
-      //       refreshData(region, radiusCalculated);
-      // }, [region]);
+      useEffect(() => {
+            radiusCalculatedWithDelta(region);
+            refreshData(region, radiusCalculated);
+      }, [region]);
 
       return (
             <>
@@ -182,6 +176,8 @@ export default function HomeScreen() {
                                                       location.coords.latitude,
                                                 longitude:
                                                       location.coords.longitude,
+                                                // latitude: 48.866667,
+                                                // longitude: 2.333333,
                                                 latitudeDelta: 0.4,
                                                 longitudeDelta: 0.4
                                           }}
@@ -190,17 +186,36 @@ export default function HomeScreen() {
                                                 setIsRegion(region);
                                           }}
                                     >
-                                          <View
-                                                style={
-                                                      styles.mapMarkerBackground
-                                                }
-                                          >
-                                                <Image
-                                                      source={require("../assets/pictogramsCustomMarkers/multi-produits.png")}
-                                                      style={styles.mapMarker}
-                                                />
-                                          </View>
-                                          <MapView.Marker />
+                                          {producers.map((producer, index) => {
+                                                return (
+                                                      <MapView.Marker
+                                                            key={index}
+                                                            coordinate={{
+                                                                  latitude:
+                                                                        producer
+                                                                              .loc
+                                                                              .latitude,
+                                                                  longitude:
+                                                                        producer
+                                                                              .loc
+                                                                              .longitude
+                                                            }}
+                                                      >
+                                                            <View
+                                                                  style={
+                                                                        styles.mapMarkerBackground
+                                                                  }
+                                                            >
+                                                                  <Image
+                                                                        source={require("../assets/pictogramsCustomMarkers/multi-produits.png")}
+                                                                        style={
+                                                                              styles.mapMarker
+                                                                        }
+                                                                  />
+                                                            </View>
+                                                      </MapView.Marker>
+                                                );
+                                          })}
                                     </MapView>
                               </ScrollView>
                         </>
