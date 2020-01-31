@@ -7,13 +7,15 @@ import Axios from "axios";
 
 // Import routes
 import HomeScreen from "./containers/HomeScreen";
+import ProducerScreen from "./containers/ProducerScreen";
 import SplashScreen from "./containers/SplashScreen";
+
 import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const Stack = createStackNavigator();
 
 export default function App() {
-      const [isloading, setIsloading] = useState(true);
+      const [isLoading, setIsLoading] = useState(true);
       const [producers, setProducers] = useState();
 
       useEffect(() => {
@@ -23,7 +25,12 @@ export default function App() {
                               "https://le-franc-manger.herokuapp.com/producers"
                         );
                         setProducers(response.data);
-                        setIsloading(false);
+                        // await Font.loadAsync({
+                        //       roboto: require("./assets/fonts/Roboto-Regular.ttf")
+                        // });
+                        setTimeout(() => {
+                              setIsLoading(false);
+                        }, 1500);
                   } catch (error) {
                         console.log(error.message);
                   }
@@ -33,7 +40,7 @@ export default function App() {
 
       return (
             <>
-                  {isloading === true ? (
+                  {isLoading === true ? (
                         <SplashScreen />
                   ) : (
                         <>
@@ -64,6 +71,14 @@ export default function App() {
                                                             }
                                                       />
                                                 )}
+                                          </Stack.Screen>
+                                          <Stack.Screen
+                                                name="Producer"
+                                                options={{
+                                                      title: "Producteurs"
+                                                }}
+                                          >
+                                                {() => <ProducerScreen />}
                                           </Stack.Screen>
                                     </Stack.Navigator>
                               </NavigationNativeContainer>

@@ -28,6 +28,10 @@ import * as Location from "expo-location";
 // Import Assets and Colors
 import Colors from "../assets/Colors";
 
+// Compos import
+import CustomCalloutView from "../components/CustomCalloutView";
+import SearchBar from "../components/SearchBar";
+
 // Variables to store width and height of the user phone
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
@@ -80,7 +84,7 @@ export default function HomeScreen() {
                         latitudeDelta: 0.4,
                         longitudeDelta: 0.4
                   });
-                  // fin ajout HL
+
                   setIsRegion({
                         latitude: 48.866667,
                         longitude: 2.333333,
@@ -212,11 +216,24 @@ export default function HomeScreen() {
                                                                               styles.mapMarker
                                                                         }
                                                                   />
+                                                                  <CustomCalloutView
+                                                                        producer={
+                                                                              producer
+                                                                        }
+                                                                  />
                                                             </View>
                                                       </MapView.Marker>
                                                 );
                                           })}
                                     </MapView>
+                                    <SearchBar
+                                          setRadiusCalculated={
+                                                setRadiusCalculated
+                                          }
+                                          radiusCalculated={radiusCalculated}
+                                          setIsRegion={setIsRegion}
+                                          region={region}
+                                    />
                               </ScrollView>
                         </>
                   )}
