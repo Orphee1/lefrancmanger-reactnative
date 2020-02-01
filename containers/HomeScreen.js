@@ -32,7 +32,7 @@ import Colors from "../assets/Colors";
 import CustomCalloutView from "../components/CustomCalloutView";
 import SearchBar from "../components/SearchBar";
 
-// Variables to store width and height of the user phone
+// Get device's screen dimensions
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 

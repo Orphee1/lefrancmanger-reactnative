@@ -1,0 +1,34 @@
+# Le Franc Manger
+
+> Beta version of Le Franc Manger, web app dedicated to fooding which finds bio and local products and producers around the user.
+
+## Install the project
+
+Clone this repository :
+
+```
+https://github.com/Orphee1/lefrancmanger-reactnative.git
+cd lefrancmanger-reactnative
+
+```
+
+Install packages
+
+```
+npm install
+```
+
+When installation is complete, run it:
+
+```
+npm start
+```
+
+## Technologies
+
+- React - version 16.9
+- React Native
+- React Navigation
+- Expo - version 36.0
+- Expo Location - version 8.0
+- Axios - version 0.19
