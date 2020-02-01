@@ -29,6 +29,7 @@ import * as Location from "expo-location";
 import Colors from "../assets/Colors";
 
 // Compos import
+import CardProducer from "../components/CardProducer";
 import CustomCalloutView from "../components/CustomCalloutView";
 import SearchBar from "../components/SearchBar";
 
@@ -205,9 +206,6 @@ export default function HomeScreen() {
                                                       <MapView.Marker
                                                             key={index}
                                                             onPress={() => {
-                                                                  alert(
-                                                                        "On Press OK"
-                                                                  );
                                                                   navigation.navigate(
                                                                         "Producer",
                                                                         {
@@ -256,7 +254,95 @@ export default function HomeScreen() {
                                           setIsRegion={setIsRegion}
                                           region={region}
                                     />
-                                    {/* <BottomDrawer></BottomDrawer> */}
+                                    <BottomDrawer
+                                          containerHeight={350}
+                                          shadow={false}
+                                          startUp={false}
+                                          backgroundColor={Colors.blue}
+                                          onExpanded={() => {
+                                                setDrawerOpen(true);
+                                          }}
+                                          onCollapsed={() => {
+                                                setDrawerOpen(false);
+                                          }}
+                                    >
+                                          <View style={styles.drawer}>
+                                                {drawerOpen === true ? (
+                                                      <View
+                                                            style={
+                                                                  styles.drawerContainer
+                                                            }
+                                                      >
+                                                            <Ionicons
+                                                                  name="ios-arrow-down"
+                                                                  color={
+                                                                        Colors.orange
+                                                                  }
+                                                                  size={
+                                                                        height /
+                                                                        40
+                                                                  }
+                                                            />
+                                                            <Text
+                                                                  style={
+                                                                        styles.drawerText
+                                                                  }
+                                                            >
+                                                                  Glissez vers
+                                                                  le bas
+                                                            </Text>
+                                                      </View>
+                                                ) : (
+                                                      <View
+                                                            style={
+                                                                  styles.drawerContainer
+                                                            }
+                                                      >
+                                                            <Ionicons
+                                                                  name="ios-arrow-up"
+                                                                  color={
+                                                                        Colors.orange
+                                                                  }
+                                                                  size={
+                                                                        height /
+                                                                        40
+                                                                  }
+                                                            />
+                                                            <Text
+                                                                  style={
+                                                                        styles.drawerText
+                                                                  }
+                                                            >
+                                                                  Glissez vers
+                                                                  le haut
+                                                            </Text>
+                                                      </View>
+                                                )}
+                                          </View>
+                                          <FlatList
+                                                data={producers}
+                                                keyExtractor={item =>
+                                                      String(item._id)
+                                                }
+                                                renderItem={({ item }) => {
+                                                      return (
+                                                            <TouchableOpacity
+                                                            // onPress={() => {
+                                                            //       navigation.navigate("Producer", {
+                                                            //         producerId: item._id
+                                                            //       });
+                                                            //     }}
+                                                            >
+                                                                  <CardProducer
+                                                                        item={
+                                                                              item
+                                                                        }
+                                                                  />
+                                                            </TouchableOpacity>
+                                                      );
+                                                }}
+                                          ></FlatList>
+                                    </BottomDrawer>
                               </ScrollView>
                         </>
                   )}

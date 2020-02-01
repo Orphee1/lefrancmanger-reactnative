@@ -17,8 +17,49 @@ export default function CardDescriptionProducer({ producer }) {
                   <View style={styles.card}>
                         <View style={styles.marginBottom15}>
                               <Text style={[styles.text, styles.marginBottom3]}>
-                                    Email :{/* {producer.email} */}
+                                    Email : {producer.email}
                               </Text>
+                              <TouchableOpacity
+                                    onPress={() => {
+                                          setIsScheduleExpend(
+                                                !isScheduleExpend
+                                          );
+                                    }}
+                              >
+                                    {isScheduleExpend === false ? (
+                                          <Text
+                                                style={[
+                                                      styles.text,
+                                                      styles.marginBottom3
+                                                ]}
+                                          >
+                                                Horaire{" "}
+                                                <Ionicons name="ios-arrow-down" />{" "}
+                                          </Text>
+                                    ) : (
+                                          <Schedule producer={producer} />
+                                    )}
+                              </TouchableOpacity>
+                              <Text style={styles.text}>
+                                    Tel : {producer.phone}
+                              </Text>
+                              <View
+                                    style={[
+                                          styles.center,
+                                          styles.marginBottom15
+                                    ]}
+                              >
+                                    <Text
+                                          style={styles.text}
+                                          numberOfLines={
+                                                isTextExpend === false
+                                                      ? 10
+                                                      : null
+                                          }
+                                    >
+                                          {producer.description}
+                                    </Text>
+                              </View>
                         </View>
                   </View>
             </TouchableOpacity>

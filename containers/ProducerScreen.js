@@ -29,7 +29,7 @@ import GoToProduct from "../components/GoToProduct";
 import MapButton from "../components/MapButton";
 
 export default function ProducerScreen() {
-      const [isLoading, setIsLoading] = useState();
+      const [isLoading, setIsLoading] = useState(true);
       const [producer, setProducer] = useState();
 
       // const route = useRoute();
@@ -77,7 +77,7 @@ export default function ProducerScreen() {
                                                 minHeight: scrollViewHeight
                                           }}
                                     >
-                                          {/* <Image
+                                          <Image
                                                 style={[
                                                       styles.image,
                                                       { width: width }
@@ -92,19 +92,19 @@ export default function ProducerScreen() {
                                                                                 .secure_url
                                                               }
                                                 }
-                                          /> */}
+                                          />
                                           <View style={styles.containerTitle}>
                                                 <Text style={styles.textTitle}>
-                                                      {/* {producer.name} */}
+                                                      {producer.name}
                                                 </Text>
                                                 <Text style={styles.textTitle}>
-                                                      {/* {producer.address.city} */}
+                                                      {producer.address.city}
                                                 </Text>
                                           </View>
                                           <View>
                                                 <View>
                                                       <CardDescriptionProducer
-                                                      // producer={producer}
+                                                            producer={producer}
                                                       />
                                                 </View>
                                                 <View
@@ -117,13 +117,11 @@ export default function ProducerScreen() {
                                                                   styles.buttonContainer
                                                             }
                                                       >
-                                                            {/* <MapButton
+                                                            <MapButton
                                                                   producer={
-
-                                                                              // producer
-
+                                                                        producer
                                                                   }
-                                                            /> */}
+                                                            />
                                                             <TouchableOpacity
                                                             //    onPress={() => {
                                                             //       navigation.navigate("Product", {
