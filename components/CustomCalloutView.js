@@ -13,12 +13,13 @@ export default function CustomCalloutView({ producer }) {
             <>
                   <Callout
                         style={styles.callout}
-                        onPress={() => {
-                              alert("On Press OK");
-                              navigation.navigate("Producer", {
-                                    producerId: producer._id
-                              });
-                        }}
+
+                        // onPress={() => {
+                        //       alert("On Press OK");
+                        //       navigation.navigate("Producer", {
+                        //             producerId: producer._id
+                        //       });
+                        // }}
                   >
                         <Image
                               style={styles.cardImg}

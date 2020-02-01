@@ -44,7 +44,11 @@ export default function HomeScreen() {
       // States managed in this page :
       // 1 handle user'sposition
       const [location, setLocation] = useState(null);
+      // const [location, setLocation] = useState({coords : {
+      //       latitude: 48.866667,
+      //                   longitude: 2.333333,
 
+      // }, latitudeDelta:0.4, longitudeDelta: 0.4});
       // 2 monitor if the the drawer is open or closed
       const [drawerOpen, setDrawerOpen] = useState(false);
       // 3 - Monitor if the data is loaded or note --> Prevents from crash at the loading
@@ -84,6 +88,12 @@ export default function HomeScreen() {
                         latitudeDelta: 0.4,
                         longitudeDelta: 0.4
                   });
+                  // setLocation({ coords : {
+                  //       latitude: 48.866667,
+                  //       longitude: 2.333333},
+                  //       latitudeDelta: 0.4,
+                  //       longitudeDelta: 0.4
+                  // });
 
                   setIsRegion({
                         latitude: 48.866667,
@@ -112,7 +122,7 @@ export default function HomeScreen() {
                                     user_Long: location.coords.longitude
                               }
                         );
-                        console.log(response.data);
+                        // console.log(response.data);
 
                         setProducers(response.data);
                         console.log(response.data.length);
@@ -194,6 +204,18 @@ export default function HomeScreen() {
                                                 return (
                                                       <MapView.Marker
                                                             key={index}
+                                                            onPress={() => {
+                                                                  alert(
+                                                                        "On Press OK"
+                                                                  );
+                                                                  navigation.navigate(
+                                                                        "Producer",
+                                                                        {
+                                                                              producerId:
+                                                                                    producer._id
+                                                                        }
+                                                                  );
+                                                            }}
                                                             coordinate={{
                                                                   latitude:
                                                                         producer
@@ -234,6 +256,7 @@ export default function HomeScreen() {
                                           setIsRegion={setIsRegion}
                                           region={region}
                                     />
+                                    {/* <BottomDrawer></BottomDrawer> */}
                               </ScrollView>
                         </>
                   )}

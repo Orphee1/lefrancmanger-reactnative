@@ -16,16 +16,131 @@ import Axios from "axios";
 
 import Colors from "../assets/Colors";
 
+// Get device's screen dimensions
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
+const scrollViewHeight = height - Constants.statusBarHeight - 45;
+
+// import Loader from "../assets/ProductLoader";
+
+// Compos import
+import CardDescriptionProducer from "../components/CardDescriptionProducer";
+import GoToProduct from "../components/GoToProduct";
+import MapButton from "../components/MapButton";
 
 export default function ProducerScreen() {
+      const [isLoading, setIsLoading] = useState();
+      const [producer, setProducer] = useState();
+
+      // const route = useRoute();
+      // const producerId = route.params.producerId;
+      const { params } = useRoute();
+      const producerId = params.producerId;
+      const navigation = useNavigation();
+
+      const fetchData = async () => {
+            try {
+                  const response = await Axios.post(
+                        "https://le-franc-manger.herokuapp.com/producer?id=" +
+                              // producerId
+                              params.producerId
+                  );
+
+                  console.log(response.data);
+                  setProducer(response.data);
+                  setTimeout(() => {
+                        setIsLoading(false);
+                  }, 500);
+            } catch (error) {
+                  alert(error.message);
+                  console.log(error);
+            }
+      };
+
+      useEffect(() => {
+            fetchData();
+      }, []);
+
       return (
-            <View>
-                  <Text style={{ marginTop: 100 }}>
-                        Welcome on Producer Screen !!!
-                  </Text>
-            </View>
+            <>
+                  {isLoading === true ? (
+                        // <Loader />
+                        <Text>Chargement en cours ...</Text>
+                  ) : (
+                        <ImageBackground
+                              source={require("../assets/images/pattern_orange.png")}
+                              style={styles.imageBackground}
+                        >
+                              <View style={styles.scrollViewContainer}>
+                                    <ScrollView
+                                          contentContainerStyle={{
+                                                minHeight: scrollViewHeight
+                                          }}
+                                    >
+                                          {/* <Image
+                                                style={[
+                                                      styles.image,
+                                                      { width: width }
+                                                ]}
+                                                source={
+                                                      !producer.photos
+                                                            ? require("../assets/images/logo_LFM.png")
+                                                            : {
+                                                                    uri:
+                                                                          producer
+                                                                                .photos[0]
+                                                                                .secure_url
+                                                              }
+                                                }
+                                          /> */}
+                                          <View style={styles.containerTitle}>
+                                                <Text style={styles.textTitle}>
+                                                      {/* {producer.name} */}
+                                                </Text>
+                                                <Text style={styles.textTitle}>
+                                                      {/* {producer.address.city} */}
+                                                </Text>
+                                          </View>
+                                          <View>
+                                                <View>
+                                                      <CardDescriptionProducer
+                                                      // producer={producer}
+                                                      />
+                                                </View>
+                                                <View
+                                                      style={
+                                                            styles.buttonWrapper
+                                                      }
+                                                >
+                                                      <View
+                                                            style={
+                                                                  styles.buttonContainer
+                                                            }
+                                                      >
+                                                            {/* <MapButton
+                                                                  producer={
+
+                                                                              // producer
+
+                                                                  }
+                                                            /> */}
+                                                            <TouchableOpacity
+                                                            //    onPress={() => {
+                                                            //       navigation.navigate("Product", {
+                                                            //         products: producer.products
+                                                            //       });
+                                                            //     }}
+                                                            >
+                                                                  <GoToProduct />
+                                                            </TouchableOpacity>
+                                                      </View>
+                                                </View>
+                                          </View>
+                                    </ScrollView>
+                              </View>
+                        </ImageBackground>
+                  )}
+            </>
       );
 }
 
@@ -45,7 +160,7 @@ const styles = StyleSheet.create({
       },
       textTitle: {
             fontSize: 20,
-            fontFamily: "roboto",
+            // fontFamily: "roboto",
             color: Colors.orange
       },
       ScrollViewContainer: {

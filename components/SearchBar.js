@@ -54,6 +54,7 @@ export default function SearchBar(props) {
                               color={Colors.orange}
                               size={height / 22}
                               onPress={event => {
+                                    alert("On Press OK");
                                     event.preventDefault();
                                     fetchData(input, region);
                               }}
