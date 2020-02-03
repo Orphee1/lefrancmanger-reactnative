@@ -123,11 +123,15 @@ export default function ProducerScreen() {
                                                                   }
                                                             />
                                                             <TouchableOpacity
-                                                            //    onPress={() => {
-                                                            //       navigation.navigate("Product", {
-                                                            //         products: producer.products
-                                                            //       });
-                                                            //     }}
+                                                                  onPress={() => {
+                                                                        navigation.navigate(
+                                                                              "Product",
+                                                                              {
+                                                                                    products:
+                                                                                          producer.products
+                                                                              }
+                                                                        );
+                                                                  }}
                                                             >
                                                                   <GoToProduct />
                                                             </TouchableOpacity>

@@ -8,6 +8,7 @@ import Axios from "axios";
 // Import routes
 import HomeScreen from "./containers/HomeScreen";
 import ProducerScreen from "./containers/ProducerScreen";
+import ProductScreen from "./containers/ProductScreen";
 import SplashScreen from "./containers/SplashScreen";
 
 import { Colors } from "react-native/Libraries/NewAppScreen";
@@ -79,6 +80,12 @@ export default function App() {
                                                 }}
                                           >
                                                 {() => <ProducerScreen />}
+                                          </Stack.Screen>
+                                          <Stack.Screen
+                                                name="Product"
+                                                options={{ title: "Produits" }}
+                                          >
+                                                {() => <ProductScreen />}
                                           </Stack.Screen>
                                     </Stack.Navigator>
                               </NavigationNativeContainer>
