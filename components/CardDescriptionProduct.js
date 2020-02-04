@@ -83,12 +83,12 @@ const styles = StyleSheet.create({
       title: {
             fontSize: 20,
             fontWeight: "400",
-            // fontFamily: "roboto",
+            fontFamily: "roboto",
             color: Colors.orange
       },
       text: {
             fontSize: 15,
-            // fontFamily: "roboto",
+            fontFamily: "roboto",
             color: Colors.blue
       },
       marginBottom15: {

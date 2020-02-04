@@ -83,18 +83,14 @@ export default function HomeScreen() {
                   });
                   setIsLoading(false);
             } else {
+                  console.log("here we are");
                   setLocation({
-                        latitude: 48.866667,
-                        longitude: 2.333333,
-                        latitudeDelta: 0.4,
-                        longitudeDelta: 0.4
+                        coords: {
+                              latitude: 48.866667,
+                              longitude: 2.333333
+                        }
                   });
-                  // setLocation({ coords : {
-                  //       latitude: 48.866667,
-                  //       longitude: 2.333333},
-                  //       latitudeDelta: 0.4,
-                  //       longitudeDelta: 0.4
-                  // });
+                  console.log(location);
 
                   setIsRegion({
                         latitude: 48.866667,

@@ -22,7 +22,17 @@ export default function ProductScreen() {
       const { params } = useRoute();
 
       return (
-            <Swiper>
+            <Swiper 
+            
+            dotColor={Colors.blue} 
+            activeDot={
+                  <View style={{backgroundColor: Colors.orange, width: 12, height: 12, borderRadius: 6, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />
+
+            }	
+            horizontal={true}
+            showsPagination={true}
+            // autoplay={true}
+            >
                   {params.products.map((product, index) => {
                         return (
                               <ImageBackground

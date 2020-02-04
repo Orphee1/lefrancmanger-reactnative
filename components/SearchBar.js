@@ -14,10 +14,14 @@ import { Entypo } from "@expo/vector-icons";
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-export default function SearchBar(props) {
+export default function SearchBar({
+      region,
+      setIsRegion,
+      radiusCalculated,
+      setRadiusCalculated
+}) {
       const navigation = useNavigation();
-      const setIsRegion = props.setIsRegion;
-      const region = props.region;
+
       const [input, setInput] = useState("");
 
       const fetchData = async (input, region) => {
@@ -54,7 +58,6 @@ export default function SearchBar(props) {
                               color={Colors.orange}
                               size={height / 22}
                               onPress={event => {
-                                    alert("On Press OK");
                                     event.preventDefault();
                                     fetchData(input, region);
                               }}
@@ -69,11 +72,13 @@ export default function SearchBar(props) {
                   />
                   <TouchableOpacity
                         onPress={() => {
-                              navigation.navigate("Filters", {
-                                    setRadiusCalculated:
-                                          props.setRadiusCalculated,
-                                    radiusCalculated: props.radiusCalculated
-                              });
+                              navigation.navigate(
+                                    "Filters"
+                                    // , {
+                                    //       setRadiusCalculated: setRadiusCalculated,
+                                    //       radiusCalculated: radiusCalculated
+                                    // }
+                              );
                         }}
                   >
                         <Entypo
@@ -115,7 +120,7 @@ const styles = StyleSheet.create({
             flex: 1,
             width: width / 1.75,
             fontSize: height / 40,
-            // fontFamily: "roboto",
+            fontFamily: "roboto",
             color: Colors.blue
       }
 });

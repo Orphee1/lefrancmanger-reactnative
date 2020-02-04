@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
       },
       textTitle: {
             fontSize: 20,
-            // fontFamily: "roboto",
+            fontFamily: "roboto",
             color: Colors.orange
       },
       ScrollViewContainer: {

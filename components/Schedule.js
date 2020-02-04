@@ -87,7 +87,7 @@ const Schedule = ({ producer }) => {
 const styles = StyleSheet.create({
       text: {
             fontSize: 15,
-            // fontFamily: "roboto",
+            fontFamily: "roboto",
             color: Colors.blue
       },
       marginBottom: {

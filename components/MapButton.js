@@ -20,6 +20,7 @@ export default function MapButton({ producer }) {
                   style={styles.button}
                   onPress={() => {
                         Linking.openURL(url);
+                       
                   }}
             >
                   <Image source={require("../assets/images/roadx1.png")} />
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
       },
       buttonText: {
             fontSize: 15,
-            // fontFamily: "roboto",
+            fontFamily: "roboto",
             color: Colors.white
       }
 });

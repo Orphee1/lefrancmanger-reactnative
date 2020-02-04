@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
       },
       buttonText: {
             fontSize: 15,
-            // fontFamily: "roboto",
+            fontFamily: "roboto",
             color: Colors.white
       },
       image: {

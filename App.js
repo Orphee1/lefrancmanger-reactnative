@@ -3,9 +3,11 @@ import React, { useState, useEffect } from "react";
 import { NavigationNativeContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "react-native";
+import * as Font from "expo-font";
 import Axios from "axios";
 
 // Import routes
+import FilterScreen from "./containers/FilterScreen";
 import HomeScreen from "./containers/HomeScreen";
 import ProducerScreen from "./containers/ProducerScreen";
 import ProductScreen from "./containers/ProductScreen";
@@ -26,9 +28,9 @@ export default function App() {
                               "https://le-franc-manger.herokuapp.com/producers"
                         );
                         setProducers(response.data);
-                        // await Font.loadAsync({
-                        //       roboto: require("./assets/fonts/Roboto-Regular.ttf")
-                        // });
+                        await Font.loadAsync({
+                              roboto: require("./assets/fonts/Roboto-Regular.ttf")
+                        });
                         setTimeout(() => {
                               setIsLoading(false);
                         }, 1500);
@@ -86,6 +88,12 @@ export default function App() {
                                                 options={{ title: "Produits" }}
                                           >
                                                 {() => <ProductScreen />}
+                                          </Stack.Screen>
+                                          <Stack.Screen
+                                                name="Filters"
+                                                options={{ title: "Options" }}
+                                          >
+                                                {() => <FilterScreen />}
                                           </Stack.Screen>
                                     </Stack.Navigator>
                               </NavigationNativeContainer>

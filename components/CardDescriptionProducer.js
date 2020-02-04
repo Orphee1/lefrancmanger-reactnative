@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
             backgroundColor: Colors.white
       },
       text: {
-            //   fontFamily: "roboto",
+            fontFamily: "roboto",
             fontSize: 15,
             color: Colors.blue
       },
