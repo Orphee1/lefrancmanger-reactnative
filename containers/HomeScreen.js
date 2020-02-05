@@ -45,11 +45,6 @@ export default function HomeScreen() {
       // States managed in this page :
       // 1 handle user'sposition
       const [location, setLocation] = useState(null);
-      // const [location, setLocation] = useState({coords : {
-      //       latitude: 48.866667,
-      //                   longitude: 2.333333,
-
-      // }, latitudeDelta:0.4, longitudeDelta: 0.4});
       // 2 monitor if the the drawer is open or closed
       const [drawerOpen, setDrawerOpen] = useState(false);
       // 3 - Monitor if the data is loaded or note --> Prevents from crash at the loading

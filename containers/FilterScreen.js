@@ -24,6 +24,7 @@ const height = Dimensions.get("window").height;
 
 //import fake producers data
 import category_data from "../assets/category_data";
+import SubCategory from "../components/SubCategory";
 
 //put Last border off for last category item
 let CatBottomItem = Colors.blue;
@@ -98,7 +99,7 @@ export default function Filter() {
                   }
             };
             readPreference();
-      });
+      }, []);
 
       const updatePreference = async (
             objCategory,
@@ -112,6 +113,80 @@ export default function Filter() {
                   subCategoryName
             );
             let pref = { ...preferences };
+            // No categoty exist, then create it and all subcategory to true
+            if (!pref[categoryName] && !subCategoryName) {
+                  pref[categoryName] = { isChecked: true };
+                  pref[categoryName]._id = objCategory._id;
+                  objCategory.subCategories.map(subCategory => {
+                        pref[categoryName][subCategory.name] = {
+                              isChecked: true
+                        };
+                        pref[categoryName][subCategory.name]._id =
+                              subCategory._id;
+                  });
+            } else if (pref[categoryName] && !subCategoryName) {
+                  // category exit and no update subcategory
+                  pref[categoryName].isChecked = !pref[categoryName].isChecked;
+                  if (pref[categoryName].isChecked === false) {
+                        // then if category === false then set all subcategory to false
+                        objCategory.subCategories.map(subCategory => {
+                              pref[categoryName][
+                                    subCategory.name
+                              ].isChecked = false;
+                        });
+                  } else if (pref[categoryName].isChecked === true) {
+                        // then if category === true then change subcategory only
+                        objCategory.subCategories.map(subCategory => {
+                              pref[categoryName][
+                                    subCategory.name
+                              ].isChecked = !pref[categoryName][
+                                    subCategory.name
+                              ].isChecked;
+                        });
+                  }
+            } else if (!pref[categoryName] && subCategoryName) {
+                  // no category exist and update subcategory
+                  pref[categoryName] = { isChecked: true };
+                  pref[categoryName]._id = objCategory._id;
+                  objCategory.subCategories.map(subCategory => {
+                        if (subCategoryName === subCategory.name) {
+                              pref[categoryName][subCategory.name] = {
+                                    isChecked: true
+                              };
+                              pref[categoryName][subCategory.name]._id =
+                                    subCategory._id;
+                        } else {
+                              pref[categoryName][subCategory.name] = {
+                                    isChecked: false
+                              };
+                              pref[categoryName][subCategory.name]._id =
+                                    subCategory._id;
+                        }
+                  });
+            } else if (pref[categoryName] && subCategoryName) {
+                  // category exist , then change subcategory only
+                  pref[categoryName][subCategoryName].isChecked = !pref[
+                        categoryName
+                  ][subCategoryName].isChecked;
+                  if (pref[categoryName][subCategoryName].isChecked === true) {
+                        // if setting one subcategory to true then force category to true
+                        pref[categoryName].isChecked = true;
+                  }
+                  // check if all subcategory are false, then change category to false
+                  if (pref[categoryName].isChecked === true) {
+                        let result = false;
+                        objCategory.subCategories.map(subCategory => {
+                              if (
+                                    pref[categoryName][subCategory.name]
+                                          .isChecked === true
+                              ) {
+                                    result = true;
+                              }
+                        });
+                        pref[categoryName].isChecked = result;
+                  }
+            }
+
             const recPref = JSON.stringify(pref);
             await AsyncStorage.setItem("preferences", recPref);
             setPreferences(pref);
