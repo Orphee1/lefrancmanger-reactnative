@@ -1,5 +1,6 @@
 import React from "react";
-// import ContentLoader, { Rect } from "react-content-loader/native";
+import ContentLoader from "react-native-content-loader";
+import { Rect } from "react-native-svg";
 import { Dimensions } from "react-native";
 
 const width = Dimensions.get("window").width;

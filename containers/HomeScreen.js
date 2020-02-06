@@ -57,6 +57,7 @@ export default function HomeScreen() {
       const [radiusCalculated, setRadiusCalculated] = useState(20000);
 
       // console.log(producers);
+      console.log(drawerOpen);
 
       // Ask permission to the client
 
@@ -115,6 +116,7 @@ export default function HomeScreen() {
                               }
                         );
                         // console.log(response.data);
+                        console.log("Home render");
 
                         setProducers(response.data);
                         console.log(response.data.length);
@@ -162,7 +164,7 @@ export default function HomeScreen() {
                         </View>
                   ) : (
                         <>
-                              <ScrollView
+                              <View
                                     behavior={
                                           Platform.OS === "ios"
                                                 ? "padding"
@@ -246,7 +248,8 @@ export default function HomeScreen() {
                                           region={region}
                                     />
                                     <BottomDrawer
-                                          containerHeight={350}
+                                          containerHeight={650}
+                                          // downDisplay={80}
                                           shadow={false}
                                           startUp={false}
                                           backgroundColor={Colors.blue}
@@ -318,11 +321,15 @@ export default function HomeScreen() {
                                                 renderItem={({ item }) => {
                                                       return (
                                                             <TouchableOpacity
-                                                            // onPress={() => {
-                                                            //       navigation.navigate("Producer", {
-                                                            //         producerId: item._id
-                                                            //       });
-                                                            //     }}
+                                                                  onPress={() => {
+                                                                        navigation.navigate(
+                                                                              "Producer",
+                                                                              {
+                                                                                    producerId:
+                                                                                          item._id
+                                                                              }
+                                                                        );
+                                                                  }}
                                                             >
                                                                   <CardProducer
                                                                         item={
@@ -334,7 +341,7 @@ export default function HomeScreen() {
                                                 }}
                                           ></FlatList>
                                     </BottomDrawer>
-                              </ScrollView>
+                              </View>
                         </>
                   )}
             </>

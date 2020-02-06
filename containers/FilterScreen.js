@@ -193,6 +193,18 @@ export default function Filter() {
             console.log("End UpdatePreference->", pref);
       };
 
+      const deletePreference = async () => {
+            console.log("Start Delete Preference-->", preferences);
+            await AsyncStorage.removeItem("preferences");
+            setRadius(defaultRadius);
+            setIsBioLabel(defaultBioLabel);
+            setPreferences({
+                  appName: "LFM",
+                  isBioLabel: isBioLabel,
+                  radius: radius
+            });
+      };
+
       const updateRadius = async val => {
             console.log("Start Update radius-->", val);
             let pref = { ...preferences };
@@ -237,6 +249,9 @@ export default function Filter() {
                                           <View style={styles.buttonContainer}>
                                                 <TouchableOpacity
                                                       style={styles.button}
+                                                      onPress={() => {
+                                                            deletePreference();
+                                                      }}
                                                 >
                                                       <Text
                                                             style={

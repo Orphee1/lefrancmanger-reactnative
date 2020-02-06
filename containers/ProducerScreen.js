@@ -21,7 +21,7 @@ const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 const scrollViewHeight = height - Constants.statusBarHeight - 45;
 
-// import Loader from "../assets/ProductLoader";
+import Loader from "../assets/ProductLoader";
 
 // Compos import
 import CardDescriptionProducer from "../components/CardDescriptionProducer";
