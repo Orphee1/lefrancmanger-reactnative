@@ -1,7 +1,7 @@
 # Le Franc Manger
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/55689599/74034656-03d09480-49b9-11ea-897c-51f8f57a6b67.gif">
+<img src="https://user-images.githubusercontent.com/55689599/74036736-1d73db00-49bd-11ea-8d4f-6a36484bf0c3.gif">
 </p>
 
 ## Install the project
