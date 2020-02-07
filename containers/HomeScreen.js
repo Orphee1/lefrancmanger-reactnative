@@ -373,9 +373,12 @@ const styles = StyleSheet.create({
       mapMarkerBackground: {
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: Colors.blue,
-            height: 35,
-            width: 35,
+            backgroundColor: Colors.orange,
+            borderWidth: 1,
+            borderColor: Colors.blue,
+
+            height: 65,
+            width: 65,
             borderRadius: 17.5
       },
       mapMarker: {

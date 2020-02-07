@@ -13,7 +13,6 @@ export default function CustomCalloutView({ producer }) {
             <>
                   <Callout
                         style={styles.callout}
-
                         // onPress={() => {
                         //       alert("On Press OK");
                         //       navigation.navigate("Producer", {
@@ -37,7 +36,7 @@ export default function CustomCalloutView({ producer }) {
                               <Text style={styles.callOutText}>
                                     {producer.name}
                               </Text>
-                              <Text style={styles.callOutText}>
+                              <Text style={styles.callOutDistance}>
                                     {distance} km
                               </Text>
                         </View>
@@ -50,12 +49,9 @@ const styles = StyleSheet.create({
       callout: {
             height: 75,
             width: 250,
-            flexDirection: "row",
+            // flexDirection: "row",
             justifyContent: "space-between",
-            alignItems: "center",
-            borderWidth: 1,
-            borderRadius: 5,
-            borderColor: Colors.blue
+            alignItems: "center"
       },
       cardImg: {
             width: "40%",
@@ -63,11 +59,29 @@ const styles = StyleSheet.create({
             borderRadius: 10,
             resizeMode: "contain"
       },
+      callOutDistance: {
+            color: Colors.white
+      },
       callOutTextContainer: {
             alignItems: "center",
-            justifyContent: "center"
+            justifyContent: "center",
+            width: "50%",
+            backgroundColor: Colors.orange,
+            borderWidth: 1,
+            borderColor: Colors.white,
+            borderRadius: 10,
+            shadowColor: "#000",
+            shadowOffset: {
+                  width: 0,
+                  height: 3
+            },
+            shadowOpacity: 0.29,
+            shadowRadius: 4.65,
+
+            elevation: 7
       },
       callOutText: {
-            color: Colors.blue
+            color: Colors.white,
+            fontWeight: "bold"
       }
 });

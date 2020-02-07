@@ -72,13 +72,10 @@ export default function SearchBar({
                   />
                   <TouchableOpacity
                         onPress={() => {
-                              navigation.navigate(
-                                    "Filters"
-                                    // , {
-                                    //       setRadiusCalculated: setRadiusCalculated,
-                                    //       radiusCalculated: radiusCalculated
-                                    // }
-                              );
+                              navigation.navigate("Filters", {
+                                    setRadiusCalculated: setRadiusCalculated,
+                                    radiusCalculated: radiusCalculated
+                              });
                         }}
                   >
                         <Entypo
