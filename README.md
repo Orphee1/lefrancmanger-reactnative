@@ -1,5 +1,11 @@
 # Le Franc Manger
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/55689599/74034656-03d09480-49b9-11ea-897c-51f8f57a6b67.gif">
+</p>
+
+## Install the project
+
 > Beta version of Le Franc Manger, web app dedicated to fooding which finds bio and local products and producers around the user.
 
 ## Install the project
