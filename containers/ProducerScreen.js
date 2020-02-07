@@ -35,7 +35,7 @@ export default function ProducerScreen() {
       // const route = useRoute();
       // const producerId = route.params.producerId;
       const { params } = useRoute();
-      const producerId = params.producerId;
+      // const producerId = params.producerId;
       const navigation = useNavigation();
 
       const fetchData = async () => {

@@ -248,7 +248,7 @@ export default function HomeScreen() {
                                           region={region}
                                     />
                                     <BottomDrawer
-                                          containerHeight={650}
+                                          containerHeight={550}
                                           // downDisplay={80}
                                           shadow={false}
                                           startUp={false}
