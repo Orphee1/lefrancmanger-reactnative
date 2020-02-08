@@ -36,4 +36,4 @@ npm start
 - Expo - version 36.0
 - Expo Location - version 8.0
 - Axios - version 0.19
-- Here Geocoder API
+- Forward geocoding: Here Geocoder API
